@@ -13,18 +13,19 @@ async def on_ready():
     print(f'{client.user} olarak giriş yaptık.')
 
 
+@client.command()
+async def plastik_bilgi_ver(ctx):
+    plastic = ["plastik şişlerin altını keserek hayvanlar için su kabı yapabilirsin","Plastik poşetlerin doğada çözünmesi yaklaşık 1000 yıl sürer.","Plastik şişelerin ortasını keserek belki saksı yapabililiriz",""]
+    cevap2 = random.choice(plastic)
+    await ctx.send(cevap2)
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-    if message.content.startswith('$merhaba'):
-        await message.channel.send("Selam!")
-    elif message.content.startswith('$bye'):
-        await message.channel.send("\U0001f642")
-    else:
-        await message.channel.send(message.content)
 
+@client.command()
+async def kagıt_bilgi_ver(ctx):
+    kagıt = ["kağıtların arkasını kullanabiliriz bu sayede 1 kağıt 2 sayfa olur","eski ve kullanılmayan kağıtlarla origami veya kağıttan uçak yapabilirsiniz","kağıtları topa çevirip futbol oynayabilirsiniz(topunuz varsa bir anlamı yok bunu yapmanın)"]
+    cevap3 = random.choice(kagıt)
+    await ctx.send(cevap3)
+    
 
 @client.command()
 async def mem(ctx):
@@ -35,29 +36,39 @@ async def mem(ctx):
             picture = discord.File(f)
         await ctx.send(file=picture)
 
+@client.command()
+async def Oneri_ver(ctx):
+    oneri = ["Metal çöpleri eritip yeniden metal elde etmek", "çöp kutularını kaldırıp yerine geri dönüşüm kutuları ve diğer atık kutusu koymak", "çöpleri dağlara atmak yerine geri dönüşüm merkezlerine göndermek.","çöpleri farklı bir amaç için kullanmak."]
+    cevap = random.choice(oneri)
+    await ctx.send(cevap)
 
-def get_duck_image_url():    
-    url = 'https://random-d.uk/api/random'
-    res = requests.get(url)
-    data = res.json()
-    return data['url']
+@client.command()
+async def metal_oneri_ver(ctx):
+    oneri = ["Metal çöpleri eritip yeniden metal elde etmek","sakıs olarak kullanabilirsin tenekeler için geçerli","tenekeye tekme atabilirsin","aliminyumla heykeller yapabilirsiniz"]
+    cevap = random.choice(oneri)
+    await ctx.send(cevap)
+    
     
 
     
 
 @client.command('duck')
 async def duck(ctx):
-    '''duck komutunu çağırdığımızda, program ordek_resmi_urlsi_al fonksiyonunu çağırır.'''
+    def get_duck_image_url():    
+        url = 'https://random-d.uk/api/random'
+        res = requests.get(url)
+        data = res.json()
+        return data['url']
     image_url = get_duck_image_url()
     await ctx.send(image_url)
     
 
-    if image_url == ("https://random-d.uk/api/1.jpg"):
-        print("çok ender bir tane almışsın")
+    
+
 
 @client.command()
 async def repeat(ctx, times: int, content='repeating...'):
     """Repeats a message multiple times."""
     for i in range(times):
         await ctx.send(content)
-client.run("MTM5ODM3MzQ5NjkwNzc2Mzg4Nw.GP77PU.tySCleyYMB_A4h5k7twDoxbmADiJzBhYOqyZBg")
+client.run("token")
